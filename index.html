@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Walentynka 💖</title>
+
     <style>
         * {
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
@@ -34,127 +35,37 @@
         }
 
         img {
-            width: 250px;
+            width: 260px;
             border-radius: 20px;
             margin-bottom: 30px;
         }
 
         .buttons {
             position: relative;
-            width: 100%;
-            height: 200px;
+            height: 120px;
         }
 
-
         button {
-            padding: 15px 30px;
+            padding: 15px 32px;
             font-size: 20px;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
-            position: absolute;
         }
 
         #yes {
             background-color: #4CAF50;
             color: white;
-            left: 50%;
-            transform: translateX(-120%);
+            margin-right: 20px;
         }
 
         #no {
             background-color: #e53935;
             color: white;
-            left: 50%;
-            transform: translateX(20%);
+            position: fixed; /* KLUCZOWE */
+            transition: 0.15s ease;
         }
 
         /* SERDUSZKA */
         .heart {
-            position: fixed;
-            top: -20px;
-            font-size: 24px;
-            animation: fall linear forwards;
-            color: #ff2d75;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(110vh);
-                opacity: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<!-- EKRAN 1 -->
-<div class="screen active" id="screen1">
-    <h1>Madziuniu, czy zostaniesz moją Walentynką? 💕</h1>
-    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="love gif">
-
-    <div class="buttons">
-        <button id="yes">YES 💖</button>
-        <button id="no">NO 😜</button>
-    </div>
-</div>
-
-<!-- EKRAN 2 -->
-<div class="screen" id="screen2">
-    <img src="https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif" alt="love gif">
-    <h1>hihi I love You 💘</h1>
-</div>
-
-<script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const screen1 = document.getElementById("screen1");
-    const screen2 = document.getElementById("screen2");
-
-    noBtn.addEventListener("mousemove", (e) => {
-    const rect = noBtn.getBoundingClientRect();
-
-    const btnX = rect.left + rect.width / 2;
-    const btnY = rect.top + rect.height / 2;
-
-    const diffX = e.clientX - btnX;
-    const diffY = e.clientY - btnY;
-
-    const escapeDistance = 120;
-
-    let newX = rect.left - diffX / Math.abs(diffX) * escapeDistance;
-    let newY = rect.top - diffY / Math.abs(diffY) * escapeDistance;
-
-    const maxX = window.innerWidth - rect.width;
-    const maxY = window.innerHeight - rect.height;
-
-    newX = Math.max(0, Math.min(maxX, newX));
-    newY = Math.max(0, Math.min(maxY, newY));
-
-    noBtn.style.left = newX + "px";
-    noBtn.style.top = newY + "px";
-});
-
-
-    yesBtn.addEventListener("click", () => {
-        screen1.classList.remove("active");
-        screen2.classList.add("active");
-        startHearts();
-    });
-
-    function startHearts() {
-        setInterval(() => {
-            const heart = document.createElement("div");
-            heart.className = "heart";
-            heart.innerHTML = "💖";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = (2 + Math.random() * 3) + "s";
-            document.body.appendChild(heart);
-
-            setTimeout(() => heart.remove(), 5000);
-        }, 300);
-    }
-</script>
-
-</body>
-</html>
+            position: fixe
