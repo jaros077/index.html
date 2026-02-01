@@ -46,7 +46,7 @@ img {
 
 .buttons {
     position: relative;
-    height: 160px;
+    height: 180px;
 }
 
 button {
@@ -59,18 +59,15 @@ button {
 #yes {
     background-color: #4CAF50;
     color: white;
-    position: relative;
-    z-index: 2; /* ZAWSZE NAD NO */
 }
 
 #no {
     background-color: #e53935;
     color: white;
     position: absolute;
-    left: 60%;
+    left: 55%;
     top: 0;
-    z-index: 1;
-    transition: transform 0.15s ease;
+    transition: left 0.15s ease, top 0.15s ease;
 }
 
 /* SERDUSZKA */
@@ -117,14 +114,41 @@ const screen2 = document.getElementById("screen2");
 
 function moveNoButton() {
     const padding = 10;
-    const btnRect = noBtn.getBoundingClientRect();
+    const rect = noBtn.getBoundingClientRect();
 
-    const maxX = window.innerWidth - btnRect.width - padding;
-    const maxY = window.innerHeight - btnRect.height - padding;
+    const maxX = window.innerWidth - rect.width - padding;
+    const maxY = window.innerHeight - rect.height - padding;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
     noBtn.style.position = "fixed";
     noBtn.style.left = x + "px";
-    noBtn.style.top =
+    noBtn.style.top = y + "px";
+}
+
+// 🔑 JEDYNE WŁAŚCIWE ZDARZENIE
+noBtn.addEventListener("pointerdown", moveNoButton);
+
+// YES – działa na mobile i desktop
+yesBtn.addEventListener("pointerdown", () => {
+    screen1.classList.remove("active");
+    screen2.classList.add("active");
+    startHearts();
+});
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
