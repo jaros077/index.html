@@ -1,71 +1,125 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Walentynka 💖</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walentynka 💖</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        background-color: #f6c1cc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .screen {
+        text-align: center;
+        display: none;
+        width: 100%;
+    }
+
+    .screen.active {
+        display: block;
+    }
+
+    h1 {
+        color: #8b004f;
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+
+    img {
+        width: 260px;
+        max-width: 80%;
+        border-radius: 20px;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 150px;
+    }
+
+    button {
+        padding: 15px 32px;
+        font-size: 20px;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+    }
+
+    #yes {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #no {
+        background-color: #e53935;
+        color: white;
+        position: fixed;
+        transition: transform 0.2s ease;
+        touch-action: manipulation;
+    }
+
+    /* serduszka */
+    .heart {
+        position: fixed;
+        top: -20px;
+        font-size: 24px;
+        animation: fall linear forwards;
+        color: #ff2d75;
+        pointer-events: none;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
         }
+    }
+</style>
+</head>
 
-        body {
-            margin: 0;
-            height: 100vh;
-            background-color: #f6c1cc; /* przytulny róż */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+<body>
 
-        .screen {
-            text-align: center;
-            display: none;
-        }
+<!-- EKRAN 1 -->
+<div class="screen active" id="screen1">
+    <h1>Madziu, czy zostaniesz moją Walentynką? 💕</h1>
 
-        .screen.active {
-            display: block;
-        }
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="love gif">
 
-        h1 {
-            color: #8b004f;
-            margin-bottom: 20px;
-        }
+    <div class="buttons">
+        <button id="yes">YES 💖</button>
+        <button id="no">NO 😜</button>
+    </div>
+</div>
 
-        img {
-            width: 260px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-        }
+<!-- EKRAN 2 -->
+<div class="screen" id="screen2">
+    <img src="https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif" alt="love gif">
+    <h1>hihi I love You 💘</h1>
+</div>
 
-        .buttons {
-            position: relative;
-            height: 120px;
-        }
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const screen1 = document.getElementById("screen1");
+const screen2 = document.getElementById("screen2");
 
-        button {
-            padding: 15px 32px;
-            font-size: 20px;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-        }
+function moveNoButton() {
+    const padding = 15;
 
-        #yes {
-            background-color: #4CAF50;
-            color: white;
-            margin-right: 20px;
-        }
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
 
-        #no {
-            background-color: #e53935;
-            color: white;
-            position: fixed; /* KLUCZOWE */
-            transition: 0.15s ease;
-        }
-
-        /* SERDUSZKA */
-        .heart {
-            position: fixe
+    const maxX = window.innerWidth - btnWidth - padding;
+    const maxY = window.innerHeight - btn
